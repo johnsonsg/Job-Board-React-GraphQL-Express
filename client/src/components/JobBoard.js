@@ -9,7 +9,7 @@ function JobBoard() {
     getJobs().then(setJobs) // .then(jobs => setJobs(jobs))
   }, [])
 
-  console.log('[JobBoard] jobs:', jobs)
+  //  console.log('[JobBoard] jobs:', jobs)
 
   return (
     <div>

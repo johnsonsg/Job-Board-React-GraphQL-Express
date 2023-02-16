@@ -1,11 +1,22 @@
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import { jobs } from '../mock-data'
+import { getJob } from '../graphql/queries'
 
 function JobDetail() {
+  const [job, setJob] = useState(null)
   const { jobId } = useParams()
 
-  const job = jobs.find(job => job.id === jobId)
+  useEffect(() => {
+    getJob(jobId).then(setJob)
+  }, [jobId])
+
+  // console.log('[JobDetail] job:', job)
+
+  if (!job) {
+    return <p>Loading...</p>
+  }
+
   return (
     <div>
       <h1 className='title'>{job.title}</h1>
