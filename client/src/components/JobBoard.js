@@ -1,5 +1,8 @@
 import JobList from './JobList'
 import { jobs } from '../mock-data'
+import { getJobs } from '../graphql/queries'
+
+getJobs()
 
 function JobBoard() {
   return (
