@@ -4,12 +4,22 @@ import { getJobs } from '../graphql/queries'
 
 function JobBoard() {
   const [jobs, setJobs] = useState([])
+  const [error, setError] = useState(false)
 
   useEffect(() => {
-    getJobs().then(setJobs) // .then(jobs => setJobs(jobs))
+    getJobs()
+      .then(setJobs) // .then(jobs => setJobs(jobs))
+      .catch(err =>
+        // .catch(err => setError(true))
+        setError(true, console.error(`${err.message} ** Something Broke **`))
+      )
   }, [])
 
-  //  console.log('[JobBoard] jobs:', jobs)
+  console.log('[JobBoard] jobs:', jobs)
+
+  if (error) {
+    return <p>Sorry, something went wrong.</p>
+  }
 
   return (
     <div>
