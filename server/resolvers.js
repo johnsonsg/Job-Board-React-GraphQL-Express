@@ -8,6 +8,13 @@ export const resolvers = {
     // Don't need async because Job.findAll() already returns a Promise.
   },
 
+  Mutation: {
+    createJob: (_root, { title, companyId, description }) => {
+      // save job to DB
+      return Job.create({ title, companyId, description })
+    }
+  },
+
   Company: {
     jobs: company => Job.findAll(job => job.companyId === company.id)
   },
